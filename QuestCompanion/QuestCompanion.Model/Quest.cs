@@ -12,8 +12,8 @@ namespace QuestCompanion.Model
             private int Amount { get; set; }
         }
 
-        private int ID { get; set; }
-        private string Title { get; set; }
+        public int ID { get; set; }
+        public string Title { get; set; }
         private List<Reward> Rewards { get; set; }
         private UpdateLog UpdateLog { get; set; }
     }

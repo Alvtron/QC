@@ -1,4 +1,6 @@
 ﻿using System;
+using QuestCompanion.DataAccess;
+using QuestCompanion.Model;
 
 namespace QuestCompanion.TestClient
 {
@@ -6,7 +8,13 @@ namespace QuestCompanion.TestClient
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var db = new Context();
+
+            Quest quest = new Quest { ID = 0001, Title = "Thomas" };
+
+            db.Quests.Add(quest);
+           
+            db.SaveChanges();
         }
     }
 }

@@ -5,4 +5,9 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\QuestCompanion.DataAccess\QuestCompanion.DataAccess.csproj" />
+    <ProjectReference Include="..\QuestCompanion.Model\QuestCompanion.Model.csproj" />
+  </ItemGroup>
+
 </Project>
