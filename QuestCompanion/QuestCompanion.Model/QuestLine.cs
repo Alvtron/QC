@@ -6,7 +6,12 @@ namespace QuestCompanion.Model
 {
     public class QuestLine
     {
-        private List<Quest> Quests { get; set; }
-        private UpdateLog UpdateLog { get; set; }
+        public List<Quest> Quests { get; private set; }
+        public Changelog Changelog { get; private set; }
+
+        public QuestLine()
+        {
+
+        }
     }
 }

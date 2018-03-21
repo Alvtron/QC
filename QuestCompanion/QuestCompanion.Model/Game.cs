@@ -9,8 +9,8 @@ namespace QuestCompanion.Model
         private int ID { get; set; }
         private string Title { get; set; }
         private DateTime DateRelease { get; set; }
-        private string Information { get; set; }
-        private UpdateLog UpdateLog { get; set; }
+        private string About { get; set; }
+        private Changelog Changelog { get; set; }
         private List<QuestLine> Quest { get; set; }
 
         // Default constructor.

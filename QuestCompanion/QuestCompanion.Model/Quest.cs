@@ -6,15 +6,20 @@ namespace QuestCompanion.Model
 {
     public class Quest
     {
-        struct Reward
+        public struct Reward
         {
-            private string Type { get; set; }
-            private int Amount { get; set; }
+            public string Type { get; set; }
+            public int Amount { get; set; }
         }
 
         public int ID { get; set; }
+        public string QuestID { get; set; }
         public string Title { get; set; }
-        private List<Reward> Rewards { get; set; }
-        private UpdateLog UpdateLog { get; set; }
+        public List<Reward> Rewards { get; private set; }
+        public Changelog Changelog { get; private set; }
+
+        public Quest()
+        {
+        }
     }
 }
