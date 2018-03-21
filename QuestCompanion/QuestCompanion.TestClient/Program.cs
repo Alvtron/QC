@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using QuestCompanion.DataAccess;
 using QuestCompanion.Model;
 
@@ -8,13 +9,14 @@ namespace QuestCompanion.TestClient
     {
         static void Main(string[] args)
         {
-            var db = new Context();
+            Quest quest = new Quest { ID = 1, Title = "Thomas" };
 
-            Quest quest = new Quest { ID = 0001, Title = "Thomas" };
+            Password psw = new Password("Alvtron1");
+            psw.Print();
 
-            db.Quests.Add(quest);
-           
-            db.SaveChanges();
+            Console.WriteLine(psw.ValidatePassword("Alvtron1"));
+
+            Console.ReadLine();
         }
     }
 }

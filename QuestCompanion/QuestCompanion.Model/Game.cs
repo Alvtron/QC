@@ -3,26 +3,16 @@ using System.Collections.Generic;
 
 namespace QuestCompanion.Model
 {
-    public class Game
+    public class Game : Post
     {
 
-        private int ID { get; set; }
-        private string Title { get; set; }
-        private DateTime DateRelease { get; set; }
-        private string About { get; set; }
-        private Changelog Changelog { get; set; }
-        private List<QuestLine> Quest { get; set; }
+        public Byte[] CoverArt { get; set; }
+        public string TrailerURL { get; set; }
+        public DateTime Release { get; set; }
+        public List<Quest> Quests { get; set; }
+        public List<Wiki> Wikis { get; set; }
 
         // Default constructor.
-        public Game()
-        {
-            Title = "unknown";
-        }
-
-        // Constructor that takes one argument.
-        public Game(string title)
-        {
-            Title = title;
-        }
+        public Game() { }
     }
 }

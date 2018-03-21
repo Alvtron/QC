@@ -4,9 +4,9 @@ using System.Text;
 
 namespace QuestCompanion.Model
 {
-    public class Questline
+    public class Wiki
     {
-        public string Title { get; set; }
         public Game Game { get; set; }
+        public List<Map> Maps { get; set; }
     }
 }

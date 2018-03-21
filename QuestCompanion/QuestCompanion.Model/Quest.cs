@@ -4,22 +4,14 @@ using System.Text;
 
 namespace QuestCompanion.Model
 {
-    public class Quest
+    public class Quest : Post
     {
-        public struct Reward
-        {
-            public string Type { get; set; }
-            public int Amount { get; set; }
-        }
-
-        public int ID { get; set; }
         public string QuestID { get; set; }
-        public string Title { get; set; }
-        public List<Reward> Rewards { get; private set; }
-        public Changelog Changelog { get; private set; }
-
-        public Quest()
-        {
-        }
+        public Game Game { get; set; }
+        public Questline Questline { get; set; }
+        public uint QuestlineNR { get; set; }
+        public Map Map { get; set; }
+        public List<Reward> Rewards { get; set; }
+        public List<Step> Steps { get; set; }
     }
 }
