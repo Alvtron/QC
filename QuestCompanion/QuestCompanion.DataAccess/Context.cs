@@ -16,8 +16,8 @@ namespace QuestCompanion.DataAccess
     {
         public DbSet<Game> Games { get; set; }
         public DbSet<Quest> Quests { get; set; }
-        public DbSet<QuestLine> QuestLines { get; set; }
-        public DbSet<UpdateLog> UpdateLogs { get; set; }
+        public DbSet<Questline> Questlines { get; set; }
+        public DbSet<Log> Changelogs { get; set; }
 
     }
 }

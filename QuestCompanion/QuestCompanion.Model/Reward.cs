@@ -4,9 +4,9 @@ using System.Text;
 
 namespace QuestCompanion.Model
 {
-    public class Questline
+    public class Reward
     {
-        public string Title { get; set; }
-        public Game Game { get; set; }
+        public string Type { get; set; }
+        public int Amount { get; set; }
     }
 }
