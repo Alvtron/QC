@@ -19,21 +19,22 @@ namespace QuestCompanion.Model
 
         private void CreateNewPassword(string password)
         {
-            const int SaltByteSize = 24;
-            const int HashByteSize = 20;
+            const int SaltSize = 24;
+            const int HashSize = 20;
             const int Pbkdf2Iterations = 1000;
 
+            // Create salt with 24 bytes large
             var cryptoProvider = new RNGCryptoServiceProvider();
-            byte[] salt = new byte[SaltByteSize];
-            cryptoProvider.GetBytes(salt);
+            Salt = new byte[SaltSize];
+            cryptoProvider.GetBytes(Salt);
 
-            var hash = CreateHash(password, salt, Pbkdf2Iterations, HashByteSize);
-
-            cryptoProvider.Dispose();
-
+            // Create hash with salt and iterations, 20 bytes large
+            var hash = CreateHash(password, Salt, Pbkdf2Iterations, HashSize);
             Iterations = Pbkdf2Iterations;
-            Salt = salt;
             Hash = Convert.ToBase64String(hash);
+
+            // Release resources
+            cryptoProvider.Dispose();
         }
 
         public bool ValidatePassword(string password)
