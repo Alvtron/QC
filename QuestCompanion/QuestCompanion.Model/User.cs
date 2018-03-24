@@ -22,5 +22,7 @@ namespace QuestCompanion.Model
         public DateTime SignedIn { get; set; }
         public List<Game> Games { get; set; }
         public List<Log> Activity { get; set; }
+
+        
     }
 }
