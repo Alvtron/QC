@@ -9,12 +9,17 @@ namespace QuestCompanion.Model
 {
     public class Image
     {
-        public int ID { get; set; }
+        public Guid UID { get; set; }
         public byte[] ImageInBytes { get; set; }
+        public string Description { get; set; }
+        public DateTime Uploaded { get; set; }
 
-        public Image(string path)
+        public Image(string path, string description = null)
         {
+            UID = Guid.NewGuid();
             ImageInBytes = File.ReadAllBytes(path);
+            Description = description;
+            Uploaded = DateTime.Now;
         }
     }
 }

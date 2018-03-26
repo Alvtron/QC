@@ -4,10 +4,17 @@ using System.Text;
 
 namespace QuestCompanion.Model
 {
-    public class Coordinate
+    public struct Coordinate
     {
         public double X { get; set; }
         public double Y { get; set; }
         public string Label { get; set; }
+
+        public Coordinate(double x, double y, string label = null)
+        {
+            X = x;
+            Y = y;
+            Label = label;
+        }
     }
 }
