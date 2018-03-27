@@ -26,9 +26,9 @@ namespace QuestCompanion.Model
 
         public User(string username, string email, string password)
         {
-            if (!IsValidEmail(email))
+            if (Validation.IsValidEmail(email) != Validation.Email.VALID)
                 return;
-            else if (!IsValidPassword(password))
+            else if (Validation.IsValidPassword(password) != Validation.Password.VALID)
                 return;
             else
             {
@@ -50,66 +50,6 @@ namespace QuestCompanion.Model
 
             Console.WriteLine("Increasing " + Username + "'s experience with " + amount + ".");
             return Experience -= amount;
-        }
-
-        bool IsValidEmail(string email)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public static bool IsValidPassword(string password)
-        {
-            if (string.IsNullOrWhiteSpace(password))
-            {
-                throw new Exception("Password should not be empty");
-            }
-
-            var hasNumber = new Regex(@"[0-9]+");
-            var hasUpperChar = new Regex(@"[A-Z]+");
-            const int MIN_LENGTH = 8, MAX_LENGTH = 100;
-            var hasLowerChar = new Regex(@"[a-z]+");
-            var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
-
-            if (!hasLowerChar.IsMatch(password))
-            {
-                Console.WriteLine("Password should contain at least one lowercase letter");
-                return false;
-            }
-            else if (!hasUpperChar.IsMatch(password))
-            {
-                Console.WriteLine("Password should contain at least one uppercase letter");
-                return false;
-            }
-            else if (password.Length < MIN_LENGTH)
-            {
-                Console.WriteLine("Password should not be less than 8 characters");
-                return false;
-            }
-            else if (password.Length > MAX_LENGTH)
-            {
-                Console.WriteLine("Password should not be more than 100 characters");
-                return false;
-            }
-            else if (!hasNumber.IsMatch(password))
-            {
-                Console.WriteLine("Password should contain at least one numeric value");
-                return false;
-            }
-            else if (!hasSymbols.IsMatch(password))
-            {
-                Console.WriteLine("Password should contain at least one special case characters");
-                return false;
-            }
-
-            else return true;
         }
 
         override public string ToString()
