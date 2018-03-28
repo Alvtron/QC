@@ -11,6 +11,16 @@ namespace QuestCompanion.Model
         public string Message { get; set; }
         public List<Log> Changelog { get; }
 
+
+        public Comment(Guid uid, Quest quest, User user, string message, List<Log> changelog)
+        {
+            UID = uid;
+            Quest = quest;
+            User = user;
+            Message = message;
+            Changelog = changelog;
+        }
+
         public Comment(Quest quest, User user, string message)
         {
             UID = Guid.NewGuid();
@@ -18,7 +28,7 @@ namespace QuestCompanion.Model
             User = user;
             Message = message;
             Changelog.Add(new Log(user, "Created comment"));
-            User.Experience +=
+            User.IncreaseExperience(Action.Type.ADD_COMMENT);
         }
     }
 }

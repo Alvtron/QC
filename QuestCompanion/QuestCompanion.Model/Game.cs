@@ -5,14 +5,15 @@ namespace QuestCompanion.Model
 {
     public class Game : Post
     {
-
-        public Byte[] CoverArt { get; set; }
+        public QCImage CoverArt { get; set; }
         public string TrailerURL { get; set; }
         public DateTime Release { get; set; }
         public List<Quest> Quests { get; set; }
         public List<Wiki> Wikis { get; set; }
 
-        // Default constructor.
-        public Game() { }
+        public Game(string title, string about, User user, QCImage coverArt, DateTime release, string trailerUrl = null) : base(title, about, user)
+        {
+
+        }
     }
 }

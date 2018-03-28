@@ -6,7 +6,7 @@ namespace QuestCompanion.Model
 {
     public class Map
     {
-        public Image Image { get; set; }
+        public QCImage Image { get; set; }
         public List<Coordinate> Coordinates { get; set; }
 
         public void AddCoordinate(Coordinate Coordinate)

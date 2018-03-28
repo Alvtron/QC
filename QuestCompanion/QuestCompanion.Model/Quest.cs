@@ -14,7 +14,18 @@ namespace QuestCompanion.Model
         public List<Reward> Rewards { get; set; }
         public List<Step> Steps { get; set; }
 
-        public Quest(Game game, List<Step> steps)
+        public Quest(Guid uid, string title, string about, string questID, Game game, Questline questline, int questlineNR, Map map, List<Reward> rewards, List<Step> steps, List<QCImage> screenshots, List<string> videoURLS, List<Log> changelog, List<Comment> comments) : base(uid, title, about, screenshots, videoURLS, changelog, comments)
+        {
+            QuestID = questID;
+            Game = game;
+            Questline = questline;
+            QuestlineNR = questlineNR;
+            Map = map;
+            Rewards = rewards;
+            Steps = steps;
+        }
+
+        public Quest(string title, string about, Game game, User user, List<Step> steps) : base(title, about, user)
         {
             UID = Guid.NewGuid();
 
