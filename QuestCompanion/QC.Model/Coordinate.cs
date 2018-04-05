@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace QC.Model
 {
-    public struct Coordinate
+    [ComplexType]
+    public class Coordinate
     {
         public double X { get; set; }
         public double Y { get; set; }

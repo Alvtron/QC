@@ -8,32 +8,13 @@ using System.Diagnostics;
 
 namespace QC.UI.DataSource
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class Users
     {
-        /// <summary>
-        /// Gets the instance.
-        /// </summary>
-        /// <value>
-        /// The instance.
-        /// </value>
         public static Users Instance { get; } = new Users();
-
-        /// <summary>
-        /// The base URI
-        /// </summary>
         private const string baseUri = "http://localhost:63011/api/";
 
-        /// <summary>
-        /// The client
-        /// </summary>
         HttpClient _client;
 
-        /// <summary>
-        /// Prevents a default instance of the <see cref="Users" /> class from being created.
-        /// </summary>
         private Users()
         {
             _client = new HttpClient
@@ -42,33 +23,19 @@ namespace QC.UI.DataSource
             };
         }
 
-        /// <summary>
-        /// Gets the students.
-        /// </summary>
-        /// <returns></returns>
-        public async Task<User[]> GetStudents()
+        public async Task<User[]> GetUsers()
         {
             var json = await _client.GetStringAsync("Users").ConfigureAwait(false);
-            User[] students = JsonConvert.DeserializeObject<User[]>(json);
-            return students;
+            User[] users = JsonConvert.DeserializeObject<User[]>(json);
+            return users;
         }
 
-        /// <summary>
-        /// Deletes the student.
-        /// </summary>
-        /// <param name="student">The student.</param>
-        /// <returns></returns>
-        public async Task<bool> DeleteStudent(User student)
+        public async Task<bool> DeleteStudent(User user)
         {
-            var response = await _client.DeleteAsync($"Users\\{student.UID}").ConfigureAwait(false);
+            var response = await _client.DeleteAsync($"Users\\{user.UID}").ConfigureAwait(false);
             return response.IsSuccessStatusCode || response.StatusCode == System.Net.HttpStatusCode.NotFound;
         }
 
-        /// <summary>
-        /// Adds the student.
-        /// </summary>
-        /// <param name="student">The student.</param>
-        /// <returns></returns>
         public async Task<bool> AddStudent(User user)
         {
             string postBody = JsonConvert.SerializeObject(user);

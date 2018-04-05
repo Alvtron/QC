@@ -1,22 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
-using QC.UtillityService;
 
 namespace QC.Model
 {
     public class User
     {
-        [ComplexType]
-        public class SecurePassword
-        {
-            public int Iterations;
-            public byte[] Salt;
-            public string Hash;
-        }
-
         [Key]
         public Guid UID { get; set; }
         [Required]
@@ -30,21 +20,21 @@ namespace QC.Model
         public int Experience { get; set; }
         [Required]
         public string Email { get; set; }
-        public QCImage Photo { get; set; }
+        public Image Photo { get; set; }
         [Required]
-        public SecurePassword Password { get; set; }
+        public Password Password { get; set; }
         [Required]
         public DateTime SignedUp { get; set; }
         [Required]
         public DateTime SignedIn { get; set; }
         public ICollection<Game> Games { get; set; }
-        public ICollection<Log> Activity { get; set; }
+        public ICollection<Log> Logs { get; set; }
 
         public User()
         {
             UID = Guid.NewGuid();
             Games = new HashSet<Game>();
-            Activity = new HashSet<Log>();
+            Logs = new HashSet<Log>();
         }
 
         public Validation.User CreateNewUser(string username, string email, string password)
@@ -59,9 +49,9 @@ namespace QC.Model
             {
                 Username = username;
                 Email = email;
-                PasswordUtillity.CreateNewPassword(password, out Password.Iterations, out Password.Salt, out Password.Hash);
+                Password = new Password(password);
                 SignedUp = DateTime.Now;
-                Activity.Add(new Log(this, "Created user", "User " + this.ToString() + " was created."));
+                Logs.Add(new Log(this, "Created user", "User " + this.ToString() + " was created."));
                 return Validation.User.USER_CREATED;
             }
         }
@@ -103,13 +93,13 @@ namespace QC.Model
 
         public void AddPhoto(Byte[] photoInBytes)
         {
-            Photo = new QCImage(photoInBytes, "Profile photo of user " + this.ToString() + ".");
+            Photo = new Image(photoInBytes, "Profile photo of user " + this.ToString() + ".");
         }
 
         public void SignIn()
         {
             SignedIn = DateTime.Now;
-            Activity.Add(new Log(this, "Signed in", "User " + this.ToString() + " signed in."));
+            Logs.Add(new Log(this, "Signed in", "User " + this.ToString() + " signed in."));
         }
 
         override public string ToString()

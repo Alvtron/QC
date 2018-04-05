@@ -11,7 +11,13 @@ namespace QC.Model
         public Questline Questline { get; set; }
         public int QuestlineNR { get; set; }
         public Map Map { get; set; }
-        public List<Reward> Rewards { get; set; }
-        public List<Step> Steps { get; set; }
+        public ICollection<Reward> Rewards { get; set; }
+        public ICollection<Step> Steps { get; set; }
+
+        public Quest() : base()
+        {
+            Rewards = new HashSet<Reward>();
+            Steps = new HashSet<Step>();
+        }
     }
 }

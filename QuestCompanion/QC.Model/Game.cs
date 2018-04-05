@@ -5,10 +5,16 @@ namespace QC.Model
 {
     public class Game : Post
     {
-        public QCImage CoverArt { get; set; }
+        public Image CoverArt { get; set; }
         public string TrailerURL { get; set; }
         public DateTime Release { get; set; }
-        public List<Quest> Quests { get; set; }
-        public List<Wiki> Wikis { get; set; }
+        public ICollection<Quest> Quests { get; set; }
+        public ICollection<Wiki> Wikis { get; set; }
+
+        public Game() : base()
+        {
+            Quests = new HashSet<Quest>();
+            Wikis = new HashSet<Wiki>();
+        }
     }
 }

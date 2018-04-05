@@ -4,14 +4,14 @@ using System.Text;
 
 namespace QC.Model
 {
-    public class Map
+    public class Map : Image
     {
-        public QCImage Image { get; set; }
         public List<Coordinate> Coordinates { get; set; }
 
-        public void AddCoordinate(Coordinate Coordinate)
+        public Map(byte[] imageInBytes, string description = null, List<Coordinate> coordinates = null)
+            : base(imageInBytes, description)
         {
-            Coordinates.Add(Coordinate);
+            Coordinates = coordinates;
         }
     }
 }

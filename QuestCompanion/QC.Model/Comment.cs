@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace QC.Model
 {
     public class Comment
     {
+        [Key]
         public Guid UID { get; set; }
+        [Required]
         public Quest Quest { get; set; }
+        [Required]
         public User User { get; set; }
+        [Required]
         public string Message { get; set; }
-        public List<Log> Changelog { get; }
+        public ICollection<Log> Logs { get; }
 
-
-        public Comment(Guid uid, Quest quest, User user, string message, List<Log> changelog)
+        public Comment()
         {
-            UID = uid;
-            Quest = quest;
-            User = user;
-            Message = message;
-            Changelog = changelog;
+            UID = Guid.NewGuid();
+            Logs = new HashSet<Log>();
         }
 
         public Comment(Quest quest, User user, string message)
@@ -27,8 +28,17 @@ namespace QC.Model
             Quest = quest;
             User = user;
             Message = message;
-            Changelog.Add(new Log(user, "Created comment"));
+            Logs.Add(new Log(user, "Created comment"));
             User.IncreaseExperience(Action.Type.ADD_COMMENT);
+        }
+
+        public Comment(Guid uid, Quest quest, User user, string message, List<Log> changelog)
+        {
+            UID = uid;
+            Quest = quest;
+            User = user;
+            Message = message;
+            Logs = changelog;
         }
     }
 }

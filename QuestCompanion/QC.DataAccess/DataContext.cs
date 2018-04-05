@@ -4,7 +4,6 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace QC.DataAccess
 {
-
     /// <summary>
     /// 
     /// </summary>
@@ -12,13 +11,15 @@ namespace QC.DataAccess
     public partial class DataContext : DbContext
     {
 
-        /// <summary>
-        /// Gets or sets the courses.
-        /// </summary>
-        /// <value>
-        /// The courses.
-        /// </value>
-        public virtual DbSet<User> Courses { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Wiki> Wikis { get; set; }
+        public virtual DbSet<Quest> Quests { get; set; }
+        public virtual DbSet<Questline> Questlines { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<Map> Maps { get; set; }
+        public virtual DbSet<Log> Logs { get; set; }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SchoolContext"/> class.
@@ -50,16 +51,13 @@ namespace QC.DataAccess
             // Handle cycles by not traversing relations
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            /*// Specify how the mapping between Students and Courses are handled
-            modelBuilder.Entity<Student>()
-                .HasMany(a => a.Courses)
-                .WithMany(b => b.Students)
-                .Map(m =>
-                {
-                    m.ToTable("StudentCourse");
-                    m.MapLeftKey("StudentID");
-                    m.MapRightKey("CourseID");
-                });*/
+            modelBuilder.Entity<Log>()
+                .HasRequired(u => u.User)
+                .WithMany(l => l.Logs)
+                .Map(m => m.ToTable("UserLogs"));
+
+            modelBuilder.Entity<Quest>()
+                .HasMany(u => u.Logs);
         }
     }
 }

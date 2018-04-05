@@ -9,14 +9,18 @@ namespace QC.Model
         public Guid UID { get; protected set; }
         public string Title { get; set; }
         public string About { get; set; }
-        public List<QCImage> Screenshots { get; }
-        public List<string> VideoURLS { get; }
-        public List<Log> Changelog { get; }
-        public List<Comment> Comments { get; }
+        public ICollection<Image> Screenshots { get; }
+        public ICollection<string> VideoURLS { get; }
+        public ICollection<Log> Logs { get; }
+        public ICollection<Comment> Comments { get; }
 
         public Post()
         {
             UID = Guid.NewGuid();
+            Screenshots = new HashSet<Image>();
+            VideoURLS = new HashSet<string>();
+            Logs = new HashSet<Log>();
+            Comments = new HashSet<Comment>();
         }
     }
 }

@@ -1,12 +1,21 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Cryptography;
 
-namespace QC.UtillityService
+namespace QC.Model
 {
-    public static class PasswordUtillity
+    [ComplexType]
+    public class Password
     {
+        [Required]
+        public int Iterations;
+        [Required]
+        public byte[] Salt;
+        [Required]
+        public string Hash;
 
-        public static void CreateNewPassword(string password, out int Iterations, out byte[] Salt, out string Hash)
+        public Password(string password)
         {
             const int SaltSize = 24;
             const int HashSize = 20;
@@ -26,7 +35,7 @@ namespace QC.UtillityService
             cryptoProvider.Dispose();
         }
 
-        public static bool ValidatePassword(string password, int Iterations, byte[] Salt, string Hash)
+        public bool ValidatePassword(string password)
         {
             var newHash = CreateHash(password, Salt, Iterations, Convert.FromBase64String(Hash).Length);
 
@@ -45,6 +54,4 @@ namespace QC.UtillityService
             return newHash;
         } 
     }
-
-}
 }

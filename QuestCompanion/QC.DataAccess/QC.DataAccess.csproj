@@ -7,8 +7,8 @@
     <ProjectGuid>{C732569A-7432-4676-92C7-1E378DC367F6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QC.DataAccess2</RootNamespace>
-    <AssemblyName>QC.DataAccess2</AssemblyName>
+    <RootNamespace>QC.DataAccess</RootNamespace>
+    <AssemblyName>QC.DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QC.Model\QC.Model.csproj">
-      <Project>{7512d4b7-d8b2-41de-be10-4218cea41768}</Project>
+      <Project>{787dc541-f583-4689-870f-91228cbf8b50}</Project>
       <Name>QC.Model</Name>
     </ProjectReference>
   </ItemGroup>

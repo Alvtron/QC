@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using QC.Model;
+using System.Data.Entity;
 
 namespace QC.DataAccess
 {
@@ -15,11 +16,10 @@ namespace QC.DataAccess
         /// <param name="context">The context to seed.</param>
         protected override void Seed(DataContext context)
         {
-            //var kim = new Student() { Firstname = "Kim-Andre", Lastname = "Engebretsen" };
-            //var math = new Course() { Title = "Math", Students = { kim, vegard, christoffer, thomas } };
-           
-            //context.Students.Add(kim);
-            //context.Courses.Add(math);
+            User alvtron = new User();
+            alvtron.CreateNewUser("Alvtron", "thomas.angeland@gmail.com", "#Alvtron1");
+
+            context.Users.Add(alvtron);
 
             base.Seed(context);
         }
